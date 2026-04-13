@@ -27,12 +27,12 @@ document.addEventListener('click', function (e) {
 
                 // Replace default 'Add to Cart' button with +/- control buttons
                 formControl.innerHTML = `
-                        <div class="quantity-controls" data-id="${id}">
-                            <button class="qty-btn minus">−</button>
-                            <span class="qty-value">1</span>
-                            <button class="qty-btn plus">+</button>
-                        </div>
-                    `;
+                    <div class="quantity-controls" data-id="${id}">
+                        <button class="qty-btn minus">−</button>
+                        <span class="qty-value">1</span>
+                        <button class="qty-btn plus">+</button>
+                    </div>
+                `;
             });
     }
 
@@ -46,6 +46,26 @@ document.addEventListener('click', function (e) {
         updateQty(id, formControl, 'decrease');
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    dateSpan = document.getElementById('date');
+    dateSpan.innerText = new Date().getFullYear();
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
+    
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+});
+
 
 function updateQty(id, formControl, action) {
     // Send POST request to update_cart endpoint

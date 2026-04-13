@@ -10,4 +10,13 @@ function truncateText($text, $maxLength = 50)
     return $text;
 }
 
+function getCartCount($array) // $array e.g $_SESSION['cart']
+{
+    // Count total items
+    // $count = 0;
+    // foreach ($array as $item) {
+    //     $count += 1;
+    // }    
+    return count($array);
+}
 

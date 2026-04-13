@@ -1,11 +1,13 @@
 <?php
 session_start();
 
+require_once "utils.php";
+
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' || isset($_POST['add_to_cart'])) { // $_SERVER['REQUEST_METHOD'] === 'POST'
     $id = $_POST['id'];
     $name = $_POST['name'];
     $price = $_POST['price'];
@@ -20,15 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
     }
 
-    // Count total items
-    $totalItems = 0;
-    foreach ($_SESSION['cart'] as $item) {
-        $totalItems += 1;
-    }
+    $count = getCartCount($_SESSION['cart']);
 
     echo json_encode([
         'status' => 'success',
-        'count' => $totalItems
+        'count' => $count
     ]);
 }
 ?>

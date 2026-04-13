@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once "utils.php";
+
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
@@ -26,7 +28,8 @@ if (isset($_POST['action'])) { // $_SERVER['REQUEST_METHOD'] === 'POST'
     }
 
     // total count
-    $count = array_sum(array_column($_SESSION['cart'], 'quantity'));
+    // $count = array_sum(array_column($_SESSION['cart'], 'quantity'));
+    $count = getCartCount($_SESSION['cart']);
 
     // return updated quantity
     $qty = isset($_SESSION['cart'][$id]) ? $_SESSION['cart'][$id]['quantity'] : 0;

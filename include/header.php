@@ -3,12 +3,13 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$count = 0;
-if (!empty($_SESSION['cart'])) {
-    // $_SESSION['count'] = count($_SESSION['cart']); // Recalculate instead of reset
-    $count = array_sum(array_column($_SESSION['cart'], 'quantity'));
+require_once "utils.php";
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
 }
 
+$count = getCartCount($_SESSION['cart']);;
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +20,7 @@ if (!empty($_SESSION['cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2TNomad - Home</title>
     <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -29,7 +31,15 @@ if (!empty($_SESSION['cart'])) {
                 <div class="logo">
                     <a href="index.php" id="nav-logo">2TNomad</a>
                 </div>
-                <ul class="nav-links">
+
+                <!-- Hamburger button -->
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <ul class="nav-links" id="nav-links">
                     <li><a href="index.php">Home</a></li>
 
 

@@ -199,4 +199,6 @@ foreach ($_SESSION['cart'] as $item) {
     });
 </script>
 
+<script src="./script.js"></script>
+
 <?php include_once("include/footer.php"); ?>
