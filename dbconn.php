@@ -1,14 +1,18 @@
 <?php
 class Database {
-    private $host = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $dbname = "2tnomad"; // Replace with your DB name
-    
+    private $host;
+    private $username;
+    private $password;
+    private $dbname;
+
     public $conn;
 
     // Constructor: connect automatically when object is created
     public function __construct() {
+        $this->host     = getenv('MYSQLHOST')     ?: 'localhost';
+        $this->username = getenv('MYSQLUSER')     ?: 'root';
+        $this->password = getenv('MYSQLPASSWORD') ?: '';
+        $this->dbname   = getenv('MYSQLDATABASE') ?: '2tnomad';
         $this->connect();
     }
 
