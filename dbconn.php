@@ -27,11 +27,13 @@ class Database {
 
         // Check for connection errors
         if ($this->conn->connect_error) {
+            error_log("Database connection failed: " . $this->conn->connect_error);
             die("Connection failed: " . $this->conn->connect_error);
         }
 
         // Optional: set charset to UTF-8
         $this->conn->set_charset("utf8");
+        error_log("Database connection established successfully to host: " . $this->host);
     }
 
     // Close connection
