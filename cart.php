@@ -28,7 +28,7 @@ if (isset($_POST['add_to_cart'])) {
 
     // Synchronize the count in case it needs to be shown elsewhere in the UI
     $count = array_sum(array_column($_SESSION['cart'], 'quantity'));
- 
+
     echo json_encode([
         'status' => 'success',
         'count' => $count
@@ -44,8 +44,6 @@ if (isset($_GET['increase'])) {
 
         $count/*$_SESSION['count']*/ = array_sum(array_column($_SESSION['cart'], 'quantity'));
     }
-
-
 }
 
 // GET request handler for decreasing product quantity from cart page
@@ -125,12 +123,22 @@ foreach ($_SESSION['cart'] as $item) {
 
             <form id="checkout-form">
                 <input type="text" name="name" placeholder="Full Name" required>
-                <input type="text" name="phone" placeholder="M-Pesa Phone (2547XXXXXXXX)" required>
+                <input type="text" name="phone" placeholder="M-Pesa Phone (2547XXXXXXXX)" id="phone" required>
                 <input type="text" name="address" placeholder="Delivery Address" required>
                 <input type="hidden" name="amount" value="<?php echo $total; ?>">
                 <label for="optional">Optional Information</label>
                 <input type="text" name="optional" id="optional" placeholder="Input any additional information">
-                <button type="submit">Confirm & Pay</button>
+                <?php
+                    if (isset($_SESSION["user_id"])) {
+                        ?>
+                        <button type="submit">Confirm & Pay</button>
+                        <?php
+                    } else {
+                        ?>
+                        <a href="./login.php" class="login-text">login to confirm payment</a>
+                        <?php
+                    }
+                ?>
             </form>
         </div>
     </div>
@@ -151,19 +159,31 @@ foreach ($_SESSION['cart'] as $item) {
 
         let formData = new FormData(this);
 
-        fetch('stk_push.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(res => res.json())
-            .then(data => {
-                alert("STK Push sent. Check your phone.");
-                window.location.href = "cart.php?clear=true";
-            })
-            .catch(err => {
-                alert("Something went wrong. Try again.");
-                console.error(err);
-            });
+        const phone = document.getElementById("phone").value;
+        console.log(phone)
+
+        const regex = /^254\d{9}$/;
+
+        if (regex.test(phone)) {
+            console.log("Valid phone number");
+            fetch('stk_push.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    alert("STK Push sent. Check your phone.");
+                    window.location.href = "cart.php?clear=true";
+                })
+                .catch(err => {
+                    alert("Something went wrong. Try again.");
+                    console.error(err);
+                });
+        } else {
+            alert("Invalid phone number");
+        }
+
+
     });
 
     // Close when clicking outside

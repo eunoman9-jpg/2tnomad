@@ -48,7 +48,7 @@ $count = getCartCount($_SESSION['cart']);;
                             🛒 Cart (<span id="cart-count"><?php echo $count; ?></span>)
                         </a>
                     </li>
-                    <li><a href="contact.php">Contact Us</a></li>
+                     <li><a href="contact.php">contact us</a></li>
                     <?php if (isset($_SESSION['user_id'])) { ?>
                         <li class="dropdown">
                             <button class="dropdown-btn"><?php echo $_SESSION['user_name']; ?> ▼</button>

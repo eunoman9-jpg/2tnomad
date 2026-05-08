@@ -20,7 +20,7 @@ include_once("./include/header.php");
 
 <!-- Hero Section -->
 <section class="hero">
-    <h1>Welcome to 2TNomad</h1>
+    <h1>Karibu kwa Vespahub</h1>
     <p>Premium Vespa PX Accessories for Enthusiasts</p>
 
 </section>

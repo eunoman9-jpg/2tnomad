@@ -341,6 +341,16 @@ body {
     cursor: pointer;
 }
 
+.login-text {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    padding: 10px;
+    background: #ff6600;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
 
 /* Contact */
 .contact form {

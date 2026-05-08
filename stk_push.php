@@ -4,7 +4,7 @@ require 'access_token.php';
 $access_token = trim(ob_get_clean()); // get token output
 
 $shortcode = "174379"; // sandbox default
-$passkey = "";
+$passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
 
 $timestamp = date("YmdHis");
 $password = base64_encode($shortcode . $passkey . $timestamp);
@@ -14,7 +14,7 @@ $amount = $_POST['amount'];
 
 $url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
 
-$callback_url = "https://yourdomain.com/callback.php";
+$callback_url = "https://extradite-overtime-contend.ngrok-free.dev/2tnomad/callback.php";
 
 $data = [
     "BusinessShortCode" => $shortcode,
