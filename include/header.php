@@ -41,15 +41,21 @@ $count = getCartCount($_SESSION['cart']);;
 
                 <ul class="nav-links" id="nav-links">
                     <li><a href="index.php">Home</a></li>
-
-
                     <li>
                         <a href="cart.php" class="cart-menu">
                             🛒 Cart (<span id="cart-count"><?php echo $count; ?></span>)
                         </a>
                     </li>
-                     <li><a href="contact.php">contact us</a></li>
-                    <?php if (isset($_SESSION['user_id'])) { ?>
+                    <li><a href="contact.php">Contact Us</a></li>
+                    <?php if (isset($_SESSION['user_id'])) {
+                        if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin") {
+                    ?>
+                            <li>
+                                <a href="admin.php">Site Administration</a>
+                            </li>
+                        <?php
+                        }
+                        ?>
                         <li class="dropdown">
                             <button class="dropdown-btn"><?php echo $_SESSION['user_name']; ?> ▼</button>
                             <div class="dropdown-menu">

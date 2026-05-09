@@ -26,6 +26,7 @@ if (isset($_POST['login'])) {
             // Store session
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_name'] = $user['name'];
+            $_SESSION['user_role'] = $user['role'];
 
             header("Location: index.php"); // redirect after login
             exit();

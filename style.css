@@ -51,39 +51,6 @@ body {
     margin: 0;
 }
 
-/* Navbar
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background: #111;
-    color: white;
-    position: fixed;
-    width: 100%;
-    z-index: 50;
-}
-
-#nav-logo {
-    text-decoration: none;
-    color: inherit;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-.nav-links li {
-    margin-left: 20px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-} */
-
 /* Base navbar */
 .navbar {
     display: flex;
@@ -460,7 +427,7 @@ footer {
     margin: 10px 0;
 }
 
-.modal-content button {
+.confirm-pay {
     width: 100%;
     padding: 10px;
     background: #ff6600;
@@ -586,6 +553,139 @@ footer {
 .dropdown:hover .dropdown-menu {
     display: block;
 }
+
+/* ========================= Begin Admin Styles ==================== */
+.container {
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+    height: 100%;
+    padding: 120px auto;
+}
+
+.sidebar {
+    /* background-color: #111; */
+    background: linear-gradient(to right, rgb(255, 106, 0), rgb(238, 9, 121));
+    width: 15%;
+    height: 100%;
+    padding: 10px;
+}
+
+.nav-items {
+    list-style: none;
+    /* margin: 10px 0; */
+    padding: 5px 0;
+}
+
+.nav-items > li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.nav-items > li > a {
+    text-decoration: none;
+    color: #111;
+    margin: 8px 0;
+    font-weight: 700;
+}
+
+.main {
+    width: 85%;
+    padding: 20px;
+}
+
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-row > button {
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    color: #f9f9f9;
+    border-radius: 4px;
+    background-color: #e65c00;
+}
+
+#data-table {
+    width: 100%;
+    border: 1px solid #d3d3d3;
+    border-collapse: collapse;
+}
+th {
+    text-align: start;
+}
+th, tr, td {
+    border: 1px solid #d3d3d3;
+    vertical-align: middle; 
+    padding: 4px 2px;
+}
+
+.actions > button {
+    border: none;
+    border-radius: 3px;
+    color: #f1f1f1;
+    padding: 4px 5px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    text-decoration: none;
+    border-radius: 3px;
+    color: #f1f1f1;
+    padding: 4px 5px;
+    font-size: 0.85em;
+    margin: 0;
+}
+.edit-btn, .cancel-btn {
+    background-color: rgb(4, 4, 92);
+}
+.delete-btn, .yes-btn {
+    background-color: rgb(121, 4, 4);
+}
+
+.text {
+    width: 100%;
+    padding: 6px;
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.prompt {
+    padding: 4px;
+    margin: 10px auto;
+    text-align: left;
+}
+
+.delete-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.yes-btn, .cancel-btn {
+    /* width: 50%; */
+    padding: 10px;
+    color: #fff;
+    border: none;
+    cursor: pointer;    
+}
+.yes-btn {
+    width: 100%;
+}
+.cancel-btn {
+    margin-left: 0px;
+    /* width: 10%; */
+}
+
+/* ========================== End Admin Styles ===================== */
 
 
 /* Responsive */

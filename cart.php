@@ -131,7 +131,7 @@ foreach ($_SESSION['cart'] as $item) {
                 <?php
                     if (isset($_SESSION["user_id"])) {
                         ?>
-                        <button type="submit">Confirm & Pay</button>
+                        <button class="confirm-pay" type="submit">Confirm & Pay</button>
                         <?php
                     } else {
                         ?>
