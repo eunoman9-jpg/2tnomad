@@ -7,7 +7,7 @@ require_once "utils.php";
 $db = new Database();
 
 // Retrieve all the products from the database
-$products = $db->conn->query("SELECT * FROM products");
+$products = $db->conn->query("SELECT * FROM products ORDER BY created_at DESC");
 
 // Retrieve all users from the database
 $users = $db->conn->query("SELECT * FROM users");
