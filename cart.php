@@ -44,7 +44,6 @@ if (isset($_POST['add_to_cart'])) {
 if (isset($_GET['increase'])) {
     $id = $_GET['increase'];
 
-
     if (isset($_SESSION['cart'][$id])) {
         $stmt = $db->conn->prepare("SELECT stock FROM products WHERE product_id = ?");
         $stmt->bind_param("s", $id);
