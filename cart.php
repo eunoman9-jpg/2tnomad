@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+require_once "dbconn.php";
+
+$db = new Database();
+
 // Initialize cart if not already done
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
@@ -39,10 +43,25 @@ if (isset($_POST['add_to_cart'])) {
 // GET request handler for increasing product quantity from cart page
 if (isset($_GET['increase'])) {
     $id = $_GET['increase'];
-    if (isset($_SESSION['cart'][$id])) {
-        $_SESSION['cart'][$id]['quantity']++;
 
-        $count/*$_SESSION['count']*/ = array_sum(array_column($_SESSION['cart'], 'quantity'));
+
+    if (isset($_SESSION['cart'][$id])) {
+        $stmt = $db->conn->prepare("SELECT stock FROM products WHERE product_id = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $product = $result->fetch_assoc();
+            $available_stock = $product['stock'];
+        }
+
+        if ($_SESSION['cart'][$id]['quantity'] < $available_stock) {
+            $_SESSION['cart'][$id]['quantity']++;
+        }
+
+        $count = array_sum(array_column($_SESSION['cart'], 'quantity'));
     }
 }
 
@@ -129,15 +148,15 @@ foreach ($_SESSION['cart'] as $item) {
                 <label for="optional">Optional Information</label>
                 <input type="text" name="optional" id="optional" placeholder="Input any additional information">
                 <?php
-                    if (isset($_SESSION["user_id"])) {
-                        ?>
-                        <button class="confirm-pay" type="submit">Confirm & Pay</button>
-                        <?php
-                    } else {
-                        ?>
-                        <a href="./login.php" class="login-text">login to confirm payment</a>
-                        <?php
-                    }
+                if (isset($_SESSION["user_id"])) {
+                ?>
+                    <button class="confirm-pay" type="submit">Confirm & Pay</button>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="login-text">login to confirm payment</a>
+                <?php
+                }
                 ?>
             </form>
         </div>

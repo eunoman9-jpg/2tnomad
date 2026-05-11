@@ -7,7 +7,7 @@ require_once "utils.php";
 $db = new Database();
 
 // Retrieve all the products from the database
-$result = $db->conn->query("SELECT * FROM products ORDER BY created_at DESC");
+$result = $db->conn->query("SELECT * FROM products WHERE stock > 0 ORDER BY created_at DESC");
 
 // Close connection when done
 $db->close();
